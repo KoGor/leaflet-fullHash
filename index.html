@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Leaflet layers control</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<script src='VeloParkings.js'></script>
+<script src='leaflet-hash.js'></script>
+
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+
+<body>
+
+<div id='map'></div>
+
+<script>
+
+var markerOptions = {
+	radius: 3,
+	fillColor: '#0099FF',
+	color: "#fff",
+	weight: 3,
+	opacity: 0.5,
+	fillOpacity: 0.5
+};
+
+var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+	stamenUrl = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+	attrib = '&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> | <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	osm = L.tileLayer(osmUrl),
+	toner = L.tileLayer(stamenUrl),
+	parkings = L.geoJson(veloParkingsData, {
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, markerOptions);
+		}
+	}),
+	map = new L.Map('map', {
+		center: [55.7501, 37.6687],
+		zoom: 11,
+		layers: [osm]
+	});
+
+var allMapLayers = { 'osm': osm,
+					  'toner': toner, 
+					  'parkings': parkings
+					};
+
+L.hash(map, allMapLayers);
+
+L.control.layers({
+    'OSM Map': osm,
+    'Stamen Toner': toner
+}, {
+    'Bike Parkings': parkings
+	}
+).addTo(map);
+</script>
+</body>
+</html>
