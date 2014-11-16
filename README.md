@@ -4,7 +4,7 @@ leaflet-fullHash
 Add dynamic URL hash for Leaflet map (map view and active layers). For those who also lack layers state in [leaflet-hash plugin](https://github.com/mlevans/leaflet-hash). Now you can easily link user to specific map view with certain active layers. 
 
 ### Demo
-You can view a demo of leaflet-fullHash here: .
+You can view a demo of leaflet-fullHash here: [kogor.github.io/leaflet-fullHash](http://kogor.github.io/leaflet-fullHash/index.html).
 
 ### Getting started
 1. Include [leaflet-fullHash.js](https://github.com/KoGor/leaflet-fullHash/blob/master/leaflet-fullHash.js).
