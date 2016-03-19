@@ -124,7 +124,7 @@
 					that = this;
 				//Add/remove layers
 				this.map.eachLayer(function(layer) {
-					this.map.removeLayer(layer);
+					that.map.removeLayer(layer);
 				});
 
 				layers.forEach(function(element, index, array) {
